@@ -1,7 +1,11 @@
+"""
+PEX Configuration
+"""
+
 import os
 
 
-class Config(object):
+class Config:  # pylint: disable=too-few-public-methods
     """
     Configuration Class
     """

@@ -80,34 +80,40 @@ Before starting development.  Configure your environment.  This is an example of
    pipx install pre-commit bump2version
    ```
 
-1. Clone repository
+1. Install the pre-commit hook
 
    ```
-   git clone 
+   pre-commit install
    ```
 
-2. Set correct python version
+9. Clone repository
+
+   ```
+   git clone
+   ```
+
+10. Set correct python version
 
    ```
    pyenv local
    ```
 
-3. Configure the python virtual environment
+11. Configure the python virtual environment
 
-   ```
-   poetry env use 3.9.1
-   poetry install
-   ```
+    ```
+    poetry env use 3.9.1
+    poetry install
+    ```
 
-4. Launch editor
+12. Launch editor
 
-   ```
-   code .
-   ```
+    ```
+    code .
+    ```
 
-12. Select the appropriate virtual environment in your editor
+13. Select the appropriate virtual environment in your editor
 
-13. You are now ready for the development workflow
+14. You are now ready for the development workflow
 
 
 
@@ -173,10 +179,16 @@ There is a pre-commit hook configured for this project that will:
 * Check Formatting using black
 * and run the tests
 
-If the above passes you will be able to commit.  If you would like to run the command manually
+Install the git hook with
 
 ```
-pre-commit run --all-files 
+pre-commit install
+```
+
+If the above passes when you try to commit you will be able to commit.  If you would like to run the command manually
+
+```
+pre-commit run --all-files
 ```
 
 
@@ -222,9 +234,9 @@ We are using Simantec Versioning and the tool bumpversion.  We are not only upda
   bumpversion minor --allow-dirty
   ```
 
-  
 
-### Initial project setup 
+
+### Initial project setup
 
 The initial repo setup only needs to be done once, but handy for reference.
 
@@ -249,7 +261,7 @@ The initial repo setup only needs to be done once, but handy for reference.
    poetry add flask gunicorn
    ```
 
-   
+
 
 ### Testing
 

@@ -1,7 +1,10 @@
+"""
+Test the PEX Application
+"""
 import json
 
 
-def test_root_endpoint(app, client):
+def test_root_endpoint(client):
     """
     GIVEN a simple, small, operable web-style API or service provider
     WHEN the root endpoint is requested
@@ -60,14 +63,7 @@ def test_metadata_endpoint(app, client):
     res = client.get("/meta")
     json_response = {}
 
-    # Check the json will decode
-    try:
-        json_response = json.loads(res.get_data(as_text=True))
-    except Exception:
-        raise Exception("failed to decode json from metadata")
-
-    # Check we have all the keys we expect
-    assert expected.keys() == json_response.keys()
+    json_response = json.loads(res.get_data(as_text=True))
 
     # Check the values match what we expect
     assert expected.items() == json_response.items()

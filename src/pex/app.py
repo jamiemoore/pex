@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
+"""
+PEX Application
+"""
 import os
 
 from flask import Flask, make_response
+from flask.logging import create_logger
 
 app = Flask(__name__)
+log = create_logger(app)
 app.config.from_object("src.pex.config.Config")
 app.config.from_envvar("COMMIT_SHA", True)
 
@@ -17,16 +22,19 @@ def checkhealth():
     cfg_list = ["VERSION", "COMMIT_SHA", "DESC"]
     for cfg in cfg_list:
         if cfg not in app.config:
-            app.logger.error("can't find config item %s", cfg)
+            log.error("can't find config item %s", cfg)
             status = False
         elif not app.config[cfg]:
-            app.logger.error("config item %s is empty", cfg)
+            log.error("config item %s is empty", cfg)
             status = False
     return status
 
 
 @app.route("/health", methods=["GET"])
 def healthcheck():
+    """
+    Healthcheck Endpoint
+    """
     health = {"health": "sad"}
     response_code = 503
     if checkhealth():
@@ -38,6 +46,9 @@ def healthcheck():
 
 @app.route("/meta", methods=["GET"])
 def metadata():
+    """
+    Metadata Endpoint
+    """
     meta = {}
     meta["version"] = app.config["VERSION"]
     meta["description"] = app.config["DESC"]
@@ -48,6 +59,9 @@ def metadata():
 
 @app.route("/", methods=["GET"])
 def root():
+    """
+    Root Endpoint
+    """
     return "hello world"
 
 
