@@ -299,3 +299,4 @@ Packaging is done using docker.  It is automated in the pipeline but if you wish
 ## Notes
 
 * https://testdriven.io/blog/flask-pytest/
+* https://github.com/actions/starter-workflows/blob/main/ci/google.yml
