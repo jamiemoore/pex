@@ -1,9 +1,11 @@
-name: CI Pipeline
-
+name: pipeline
 on: push
-
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+  SERVICE: pex
+  REGION: us-central1
 jobs:
-  pipeline:
+  test:
     name: test
     runs-on: ubuntu-latest
 
@@ -23,3 +25,15 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Run pre-commit
         uses: pre-commit/action@v2.0.0
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
