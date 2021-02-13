@@ -48,7 +48,7 @@ jobs:
         uses: PaulLesur/wait-docker-image-github-action@v1.0
         with:
             image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}
-            tag: ${{ github.sha }
+            tag: ${{ github.sha }}
             timeout: 600
             fail-on-timeout: false
 
