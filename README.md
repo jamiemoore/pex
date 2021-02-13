@@ -261,7 +261,7 @@ The initial repo setup only needs to be done once, but handy for reference.
    poetry add flask gunicorn
    ```
 
-
+4. The first time you run the deployment it will not allow you to connect unauthenticated.
 
 ### Testing
 
