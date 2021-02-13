@@ -83,7 +83,7 @@ Before starting development.  Configure your environment.  This is an example of
 1. Clone repository
 
    ```
-   git clone
+   git clone 
    ```
 
 2. Set correct python version
@@ -176,7 +176,7 @@ There is a pre-commit hook configured for this project that will:
 If the above passes you will be able to commit.  If you would like to run the command manually
 
 ```
-pre-commit run --all-files
+pre-commit run --all-files 
 ```
 
 
@@ -209,15 +209,22 @@ We are using Simantec Versioning and the tool bumpversion.  We are not only upda
   git tag
   ```
 
-* If you want to bump the version even though the git working directory is dirty
+* Push the changes once you have bumped the version and added the tag
+
+  ```
+  git push
+  git push --tags
+  ```
+
+* If you want to bump the version even though the git working directory is dirty, not usually a good idea
 
   ```
   bumpversion minor --allow-dirty
   ```
 
+  
 
-
-### Initial project setup
+### Initial project setup 
 
 The initial repo setup only needs to be done once, but handy for reference.
 
@@ -242,7 +249,7 @@ The initial repo setup only needs to be done once, but handy for reference.
    poetry add flask gunicorn
    ```
 
-
+   
 
 ### Testing
 

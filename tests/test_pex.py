@@ -48,7 +48,7 @@ def test_metadata_endpoint(app, client):
     }
     """
     expected = {
-        "version": "1.0",
+        "version": "1.0.0",
         "description": "description goes here",
         "lastcommitsha": "aaaaaaa",
     }
