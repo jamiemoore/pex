@@ -4,7 +4,7 @@ on: push
 
 jobs:
   pipeline:
-    name: Pipeline Job
+    name: test
     runs-on: ubuntu-latest
 
     steps:
@@ -12,9 +12,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Python
         uses: actions/setup-python@v2
-      - name: Install pylint
+      - name: Install prereqs
         run: |
           python -m pip install --upgrade pip
-          pip install pylint
+          pip install pylint pytest
       - name: Run pre-commit
         uses: pre-commit/action@v2.0.0
