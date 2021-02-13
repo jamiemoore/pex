@@ -45,7 +45,7 @@ jobs:
 
       - name: Build and Push Container
         run: |-
-          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:$(cat VERSION) --build-arg COMMIT_SHA=$(cat VERSION)
+          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:$(cat VERSION) --build-arg COMMIT_SHA=$(cat VERSION) .
           docker push gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:$(cat VERSION)
 
       # - name: Deploy to Cloud Run
