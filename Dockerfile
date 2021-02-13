@@ -29,14 +29,14 @@ COPY pyproject.toml poetry.lock ./
 RUN poetry export --without-hashes -f requirements.txt --output requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY src/ .
 RUN poetry build && /venv/bin/pip install dist/*.whl
 
 FROM base as final
 
 RUN apk add --no-cache libffi
 COPY --from=build /venv /venv
-COPY src/pex/*.py /app/
+COPY src/pex/*.py /app/src/pex/
 COPY entrypoint.sh /app/
 
 ARG COMMIT_SHA=""
