@@ -32,8 +32,8 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout code
-      #   uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Setup Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.2.0
         with:
@@ -53,7 +53,7 @@ jobs:
             fail-on-timeout: false
 
       - name: tag with release with version
-        run: gcloud container images add-tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha } gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:$(cat VERSION)
+        run: gcloud container images add-tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:$(cat VERSION)
 
       # - name: Build and Push Container
       #   run: |-
