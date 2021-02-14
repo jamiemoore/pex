@@ -1,4 +1,4 @@
-name: On Tag
+name: release
 on:
   push:
     tags:
@@ -8,8 +8,8 @@ env:
   SERVICE: pex
   REGION: us-central1
 jobs:
-  release:
-    name: release
+  tag:
+    name: Tag Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

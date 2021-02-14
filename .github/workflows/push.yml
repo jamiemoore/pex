@@ -1,4 +1,4 @@
-name: On Push
+name: ci
 on:
   push:
     branches:
@@ -34,7 +34,7 @@ jobs:
 
   buildandpush:
     name: Build and Push Image
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
