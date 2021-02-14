@@ -13,7 +13,7 @@ This is an excuse to write some python and play with some fun tech.
 
 ## Architecture
 
-Continuous Integration Architecutre
+Continuous Integration Architecture
 
 ![arch](docs/arch.png)
 

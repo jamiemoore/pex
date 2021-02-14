@@ -1,4 +1,4 @@
-name: on push
+name: pipeline
 on: push
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT }}
@@ -6,7 +6,7 @@ env:
   REGION: us-central1
 jobs:
   test:
-    name: test
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -25,8 +25,10 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Run pre-commit
         uses: pre-commit/action@v2.0.0
-  deploy:
-    name: deploy
+
+  buildandpush:
+    name: Build and Push Docker Image
+    # needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -45,6 +47,21 @@ jobs:
           docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{  github.sha }} --build-arg COMMIT_SHA=${{  github.sha }} .
           docker push gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{  github.sha }}
 
+      - name: if git tag, add tag to docker image
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: gcloud container images add-tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:$(cat VERSION)
+
+  cideploy:
+    name: CI Deployment
+    needs: buildandpush
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
       - name: Deploy to Cloud Run
         id: deploy
         uses: google-github-actions/deploy-cloudrun@v0.4.0
