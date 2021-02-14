@@ -252,7 +252,7 @@ We are using Simantec Versioning and the tool bumpversion.  Bumpversion allows u
 * Push the changes once you have bumped the version and added the tag
 
   ```
-  git push && git push --tags
+  git push --follow-tags
   ```
 
 * When you push the tag it will run a github workflow to add a tag to the docker image with the version number.  This will be the start of a future release process.

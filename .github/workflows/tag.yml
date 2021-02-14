@@ -2,7 +2,7 @@ name: On Tag
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT }}
   SERVICE: pex
