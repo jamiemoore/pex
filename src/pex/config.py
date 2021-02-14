@@ -12,6 +12,6 @@ class Config:  # pylint: disable=too-few-public-methods
 
     DEBUG = False
     TESTING = False
-    VERSION = "0.6.8"
+    VERSION = "0.6.9"
     DESC = "Python EXample Service"
     COMMIT_SHA = os.getenv("COMMIT_SHA", "")
