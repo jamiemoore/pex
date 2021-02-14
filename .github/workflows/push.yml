@@ -1,8 +1,11 @@
 name: On Push
 on:
   push:
-    tags:
-      - '!*'
+    branches:
+      - 'master'
+    tags-ignore:
+      - '*.*'
+
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT }}
   SERVICE: pex
