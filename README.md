@@ -112,9 +112,9 @@ This is an example of Mac OS X.  If you need to configure one of the other envir
 
 10. Install the pre-commit hook
 
-   ```
-   pre-commit install
-   ```
+    ```
+    pre-commit install
+    ```
 
 11. Configure the python virtual environment
 
