@@ -1,4 +1,5 @@
 # pex
+![ci](https://github.com/jamiemoore/pex/workflows/ci/badge.svg) ![release](https://github.com/jamiemoore/pex/workflows/release/badge.svg)
 Python EXample Project
 
 ## Overview
