@@ -53,10 +53,6 @@ jobs:
           docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{  github.sha }} --build-arg COMMIT_SHA=${{  github.sha }} .
           docker push gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{  github.sha }}
 
-      # - name: if git tag, add tag to docker image
-      #   if: startsWith(github.ref, 'refs/tags/v')
-      #   run: gcloud container images add-tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:$(cat VERSION)
-
   cideploy:
     name: CI Deployment
     needs: buildandpush

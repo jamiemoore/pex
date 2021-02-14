@@ -42,7 +42,10 @@ jobs:
           export_default_credentials: true
 
       - name: Authorize Docker push
-        run: gcloud auth configure-docker
+        run: gcloud auth configure-docker gcr.io
+
+      - name: wait for docker image
+        run: skopeo inspect docker://gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
 
       # - name: wait for docker image
       #   uses: PaulLesur/wait-docker-image-github-action@v1.0
