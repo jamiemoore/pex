@@ -25,7 +25,7 @@ jobs:
         run: gcloud auth configure-docker gcr.io
 
       - name: wait for docker image
-        run: timeout 5m bash -c 'until skopeo inspect docker://gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} 2> /dev/null; do sleep 10; done'
+        run: timeout 10m bash -c 'until skopeo inspect docker://gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} 2> /dev/null; do sleep 10; done'
 
       - name: tag image with version
         run: gcloud container images add-tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:$(cat VERSION)
