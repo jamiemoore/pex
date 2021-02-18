@@ -13,9 +13,9 @@ app.config.from_object("src.pex.config.Config")
 app.config.from_envvar("COMMIT_SHA", True)
 
 
-def checkhealth():
+def check_app_health():
     """
-    Check the health of the service
+    Check the health of the app
     """
     status = True
     # Check the config
@@ -31,17 +31,16 @@ def checkhealth():
 
 
 @app.route("/health", methods=["GET"])
-def healthcheck():
+def health_check():
     """
     Healthcheck Endpoint
     """
     health = {"health": "sad"}
     response_code = 503
-    if checkhealth():
+    if check_app_health():
         health["health"] = "happy"
         response_code = 200
-    res = make_response(health, response_code)
-    return res
+    return make_response(health, response_code)
 
 
 @app.route("/meta", methods=["GET"])
