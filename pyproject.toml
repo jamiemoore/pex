@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pex"
-version = "0.6.14"
+version = "0.6.15"
 description = "Python Example Project"
 authors = ["Jamie Moore"]
 license = "MIT"
